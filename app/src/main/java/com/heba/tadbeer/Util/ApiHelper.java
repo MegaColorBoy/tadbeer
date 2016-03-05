@@ -52,6 +52,13 @@ public class ApiHelper {
             });
         }
     }
+
+    /**
+     * Loging In user
+     * @param email user email address
+     * @param password  user password
+     * @param  callback ApiCallback.
+     */
     public void login(String email, final String password, final ApiCallback callback){
         String url = server + "?scope=auth&action=login";
         JSONObject requestData = new JSONObject();
@@ -67,8 +74,14 @@ public class ApiHelper {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Register new user account
+     * @param email user email address
+     * @param password  user password
+     * @param  callback ApiCallback.
+     */
     public void register(String email, String password, ApiCallback callback){
-        String url = server;
         JSONObject postData = new JSONObject();
 
         //create postdata
@@ -82,6 +95,192 @@ public class ApiHelper {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Add a new Loyalty card to user account
+     * @param cardNumber card number provided by retailer
+     * @param email  the email address linked to the card - on the retailer side
+     * @param retailerId the retailer ID per Tadbeer DB
+     * @param  callback ApiCallback.
+     */
+    public void addCard(String cardNumber, String email, int retailerId, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","post_Card");
+            postData.put("email", email);
+            postData.put("cardNumber", cardNumber);
+            postData.put("retailerId", retailerId);
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Get Loyalty card details
+     * @param id card ID provided by Tadbeer
+     * @param cardNumber card number provided by retailer (optional - only used to search for card when not
+     *                   found in Tadbeer database.
+     * @param  callback ApiCallback.
+     */
+    public void getCard(int id, String cardNumber, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_card");
+            postData.put("id", id);
+            postData.put("cardNumber", cardNumber);
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get Receipt
+     * @param receiptId receipt ID provided by Tadbeer
+     * @param cardId card ID required for verification
+     * @param receiptNumber receipt number provided by retailer - optional
+     *                      only used to check against retailer database
+     * @param  callback ApiCallback.
+     */
+    public void getReceipt(int receiptId, int cardId, String receiptNumber, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_receipt");
+            postData.put("id", cardId);
+            postData.put("receiptId", receiptId);
+            postData.put("receiptNumber", receiptNumber);
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * General Search
+     * @param q search term
+     * @param  callback ApiCallback.
+     */
+    public void search(String q, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_receipt");
+            postData.put("q", q);
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get Item details
+     * @param itemId
+     * @param  callback ApiCallback.
+     */
+    public void getItem(int itemId, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_item");
+            postData.put("itemId", itemId);
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get Receipt Item details
+     * refers to particular appearance of an item on a specified receipt
+     * @param receiptItemId
+     * @param receiptId
+     * @param  callback ApiCallback.
+     */
+    public void getReceiptItem(int receiptItemId, int receiptId, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_receipt_item");
+            postData.put("receiptId", receiptId);
+            postData.put("itemId", receiptItemId);
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get Warranty details
+     * @param warrantyId
+     * @param  callback ApiCallback.
+     */
+    public void getWarranty(int warrantyId, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_warranty");
+            postData.put("warrantyId", warrantyId);
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get User Warranty - These are any warranties for items a user has purchased
+     * @param  callback ApiCallback.
+     */
+    public void getUserWarranties(ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        //create postdata
+        try {
+            postData.put("scope","user");
+            postData.put("action","get_user_warranties");
+
+            sendRequest(postData, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Delete Loyalty Card - From tadbeer records
+     * @param cardId - as supplied by Tadbeer
+     * @param  callback ApiCallback.
+     */
+    public void deleteCard(int cardId, ApiCallback callback){
+        JSONObject postData = new JSONObject();
+        try{
+            postData.put("scope", "user");
+            postData.put("action", "delete_card");
+            postData.put("id", cardId);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Get Request Token
+     * @param  callback ApiCallback.
+     */
     private void get_request_token(final ApiCallback callback){
         String url = server + "?scope=auth&action=get_request_token";
         //create postdata
@@ -90,6 +289,13 @@ public class ApiHelper {
                 sendRequest(postData, callback);
         }
     }
+
+
+    /**
+     * Send Request - bundles request URL and prameters and adds request to volley queue
+     * @param requestData a JSONObject of request parameters
+     * @param  callback ApiCallback.
+     */
     public void sendRequest(JSONObject requestData, final ApiCallback callback){
         try {
             if(requestToken!=null){
