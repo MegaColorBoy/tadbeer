@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.heba.tadbeer.LoginActivityFragment" >
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/text_view_email"
+        android:layout_above="@+id/text_view_password"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/email"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/text_view_password"
+        android:hint="@string/password"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/text_view_email"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:id="@+id/button_login"
+        android:layout_below="@+id/text_view_password"
+        android:layout_centerHorizontal="true"
+        android:onClick="login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:textSize="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/signup"
+        android:id="@+id/text_view_signup_link"
+        android:layout_below="@+id/button_login"
+        android:layout_centerHorizontal="true"
+        android:textSize="28dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:clickable="false"
+        android:linksClickable="true"
+        android:onClick="goto_signup" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/text_view_error_text"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff0000"
+        android:textStyle="bold"
+        android:onClick="login" />
+
+</RelativeLayout>

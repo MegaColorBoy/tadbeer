@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="error_pasword_format" type="id">Password must be atleast 8 charactes long</item>
+</resources>

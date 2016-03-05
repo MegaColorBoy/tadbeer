@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.heba.tadbeer.RegisterFragment">
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/text_view_signup_email"
+        android:layout_above="@+id/text_view_signup_password"
+        android:layout_alignStart="@+id/text_view_signup_password"
+        android:hint="@string/email"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/text_view_signup_password"
+        android:hint="@string/password"
+        android:layout_above="@+id/text_view_signup_confirm_password"
+        android:layout_alignStart="@+id/text_view_signup_confirm_password"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/text_view_signup_confirm_password"
+        android:hint="@string/confirm_password"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:id="@+id/button_signup"
+        android:layout_below="@+id/text_view_signup_confirm_password"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/login"
+        android:id="@+id/text_view_login_link"
+        android:textSize="28dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:clickable="false"
+        android:linksClickable="true"
+        android:layout_below="@+id/button_signup"
+        android:layout_centerHorizontal="true"
+        android:onClick="goto_login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:textSize="40dp"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/text_view_signup_error"
+        android:layout_above="@+id/text_view_signup_email"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff0000" />
+</RelativeLayout>
