@@ -174,7 +174,7 @@ public class ApiHelper {
         //create postdata
         try {
             postData.put("scope","user");
-            postData.put("action","get_receipt");
+            postData.put("action","search");
             postData.put("q", q);
 
             sendRequest(postData, callback);
